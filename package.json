@@ -22,8 +22,10 @@
 	},
 	"homepage": "https://github.com/LiquidPlatypus/FLACtify-backend#readme",
 	"dependencies": {
+		"@prisma/client": "^7.3.0",
 		"dotenv": "^17.2.3",
-		"fastify": "^5.7.2"
+		"fastify": "^5.7.2",
+		"prisma": "^7.3.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.39.2",
