@@ -3,4 +3,6 @@ node_modules
 dist
 
 .env
-/generated/prisma
+.env.prod
+/generated/prisma_client
+

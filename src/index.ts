@@ -1,16 +1,25 @@
 import fastify from "fastify";
 
-import {prisma} from "./prisma.js";
+import {PrismaClient} from "../generated/prisma_client/client";
+import {PrismaPg} from "@prisma/adapter-pg";
 
-const server = fastify();
-
-server.get("/ping", async (request, reply) => {
-	return "/pong\n";
+const adapter = new PrismaPg({
+	connectionString: process.env.DATABASE_URL,
 });
 
-server.get("/users", async() => {
-	return prisma.user.findMany();
-})
+const server = fastify();
+const prisma = new PrismaClient({
+	adapter,
+});
+
+server.get("/", async (req, res) => {
+	const userCount = await prisma.user.count();
+	res.send(
+		userCount == 0
+			? "No users have been added yet."
+			: "Some users have been added to the database."
+	);
+});
 
 server.listen({ port: 3000, host: "0.0.0.0" }, (err, address) => {
 	if (err) {

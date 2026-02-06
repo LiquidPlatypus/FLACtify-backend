@@ -7,7 +7,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "tsx watch src/index.ts",
 		"build": "tsc -p tsconfig.json",
-		"start": "node dist/index.js"
+		"start": "node dist/index.js",
+
+		"db:deploy": "npx prisma migrate deploy && npx prisma generate"
 	},
 	"repository": {
 		"type": "git",
@@ -22,18 +24,21 @@
 	},
 	"homepage": "https://github.com/LiquidPlatypus/FLACtify-backend#readme",
 	"dependencies": {
+		"@prisma/adapter-pg": "^7.3.0",
 		"@prisma/client": "^7.3.0",
 		"dotenv": "^17.2.3",
 		"fastify": "^5.7.2",
-		"prisma": "^7.3.0"
+		"pg": "^8.18.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.39.2",
 		"@tsconfig/node24": "^24.0.4",
 		"@types/node": "^25.0.10",
+		"@types/pg": "^8.16.0",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"prettier": "3.8.1",
+		"prisma": "^7.3.0",
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0"
