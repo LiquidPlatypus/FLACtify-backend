@@ -1,6 +1,5 @@
 import fastify from "fastify";
 import jwt from "@fastify/jwt";
-import cookie from "@fastify/cookie";
 
 import { requireEnvs } from "./utils/env.js";
 
@@ -30,12 +29,8 @@ server.get("/", async (req, res) => {
 	);
 });
 
-const { JWT_SECRET, COOKIE_SECRET } = requireEnvs([
-	"JWT_SECRET",
-	"COOKIE_SECRET",
-] as const);
+const { JWT_SECRET } = requireEnvs(["JWT_SECRET"] as const);
 await server.register(jwt, { secret: JWT_SECRET });
-await server.register(cookie, { secret: COOKIE_SECRET });
 
 server.register(userRoutes, { prefix: "api/users" });
 
